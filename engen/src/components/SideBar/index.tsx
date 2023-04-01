@@ -22,16 +22,11 @@ const SideBar = () => {
   const { data: session } = useSession();
 
   const pathname = usePathname();
-  const activeMenu = useMemo(
-    () => menuItems.find((menu) => menu.link === pathname),
-    [pathname]
-  );
+
   if (!session?.user) return null;
   return (
     <div className="sidebar-wrapper">
-      <div className="focus hidden md:flex">
-        <div className="focus--mask"></div>
-      </div>
+      <div className="focus hidden md:flex"></div>
       {menuItems.map(({ icon: Image, ...menu }) => {
         return (
           <Link href={menu.link} key={menu.id}>
@@ -39,7 +34,6 @@ const SideBar = () => {
           </Link>
         );
       })}
-
       <button className="sidebar-icon group" type="submit" onClick={logout}>
         <LogoutIcon />
         <span className="sidebar-tooltip group-hover:scale-100">Logout</span>
