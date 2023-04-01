@@ -7,20 +7,16 @@ import { logout } from "@/lib/auth";
 import HomeIcon from "@/components/Icons/HomeIcon";
 import LogoutIcon from "../Icons/LogoutIcon";
 
-const menuItems = [{ id: 1, label: "Home", icon: HomeIcon, link: "/" }];
+const menuItems = [{ id: 1, label: "Home", icon: HomeIcon, link: "/" },{ id: 2, label: "Create", icon: HomeIcon, link: "/create" }];
 const SideBar = () => {
   const { data: session } = useSession();
 
   const pathname = usePathname();
-  const activeMenu = useMemo(
-    () => menuItems.find((menu) => menu.link === pathname),
-    [pathname]
-  );
+
   if (!session?.user) return null;
   return (
     <div className="sidebar-wrapper">
       <div className="focus hidden md:flex">
-        <div className="focus--mask"></div>
       </div>
       {menuItems.map(({ icon: Image, ...menu }) => {
         return (
@@ -29,7 +25,6 @@ const SideBar = () => {
           </Link>
         );
       })}
-
       <button className="sidebar-icon group" type="submit" onClick={logout}>
         <LogoutIcon />
         <span className="sidebar-tooltip group-hover:scale-100">Logout</span>
