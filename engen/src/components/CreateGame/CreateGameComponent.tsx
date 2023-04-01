@@ -53,7 +53,7 @@ const CreateGameComponent = () => {
   };
 
   return (
-    <main className="w-screen h-screen">
+    <main className="fixed w-2/3 left-48 top-48">
       {step == 1 ? (
         <div className="flex flex-wrap justify-center items-center">
           <PlayerCountCard onClick={() => handleClickNum(2)} text="2 Players" />

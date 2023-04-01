@@ -1,7 +1,7 @@
 import SideBar from "@/components/SideBar";
 import "./globals.css";
 import SessionProvider from "@/app/sessionProvider";
-
+import ReactQueryWrapper from "./QueryClientWrapper";
 export default function RootLayout({
   children,
 }: {
@@ -17,7 +17,7 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           <SideBar />
-          {children}
+          <ReactQueryWrapper> {children}</ReactQueryWrapper>
         </SessionProvider>
       </body>
     </html>
