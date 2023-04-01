@@ -1,11 +1,13 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import ProfileCard from "@/components/Profile/ProfileComponent";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
   return (
     <main>
-      <div>{JSON.stringify(session ?? "null")}</div>
+      <div>
+        <ProfileCard />;
+      </div>
     </main>
   );
 }

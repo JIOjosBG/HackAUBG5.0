@@ -1,6 +1,9 @@
-import React from "react";
-
-const ProfileCard = () => {
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
+const ProfileCard = (props: any) => {
+  const user = useSession().data?.user as any;
   return (
     <div className="bg-transparent  fixed border-t-4 border-b-4   border border-spacing-x-36   border-orange-100 h-1/2 left-48 top-16  w-full max-w-xs mx-auto rounded-lg shadow-md p-4">
       <div className="flex items-center space-x-4">
@@ -10,8 +13,8 @@ const ProfileCard = () => {
           alt="Profile"
         />
         <div>
-          <h2 className="text-xl font-semibold">Username</h2>
-          <p className="text-gray-400">user@example.com</p>
+          <h2 className="text-xl font-semibold">{user?.name}</h2>
+          <p className="text-gray-400">{user?.email}</p>
         </div>
       </div>
       <div className="mt-4">
