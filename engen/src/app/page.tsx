@@ -6,7 +6,6 @@ export default async function Home() {
   return (
     <main>
       <div>{JSON.stringify(session ?? "null")}</div>
-      
     </main>
   );
 }
