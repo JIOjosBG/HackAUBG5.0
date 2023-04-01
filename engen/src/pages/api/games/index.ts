@@ -30,11 +30,15 @@ async function createGame(
     const completion = await runCompletion(req.body);
     const title = completion?.title as string;
     const description = completion?.description as string;
+    const userId = req.body.userId as string;
 
     const game = await prisma.game.create({
       data: {
         title,
         description,
+        users: {
+          connect: { id: userId },
+        },
       },
     });
 
