@@ -27,7 +27,7 @@ async function createGame(
   res: NextApiResponse<Game | Error>
 ) {
   try {
-    const completion = await runCompletion(req.body);
+    const completion = await runCompletion(req.body.prompt);
     const title = completion?.title as string;
     const description = completion?.description as string;
     const userId = req.body.userId as string;
