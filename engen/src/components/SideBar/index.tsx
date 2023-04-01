@@ -5,9 +5,19 @@ import { usePathname } from "next/navigation";
 import React, { useMemo } from "react";
 import { logout } from "@/lib/auth";
 import HomeIcon from "@/components/Icons/HomeIcon";
+import ProfileIcon from "@/components/Icons/ProfileIcon";
 import LogoutIcon from "../Icons/LogoutIcon";
 
-const menuItems = [{ id: 1, label: "Home", icon: HomeIcon, link: "/" },{ id: 2, label: "Create", icon: HomeIcon, link: "/create" }];
+const menuItems = [
+  { id: 1, label: "Home", icon: HomeIcon, link: "/" },
+  {
+    id: 2,
+    label: "Profile",
+    icon: ProfileIcon,
+    link: "/profile",
+  },
+];
+
 const SideBar = () => {
   const { data: session } = useSession();
 
@@ -16,8 +26,7 @@ const SideBar = () => {
   if (!session?.user) return null;
   return (
     <div className="sidebar-wrapper">
-      <div className="focus hidden md:flex">
-      </div>
+      <div className="focus hidden md:flex"></div>
       {menuItems.map(({ icon: Image, ...menu }) => {
         return (
           <Link href={menu.link} key={menu.id}>
