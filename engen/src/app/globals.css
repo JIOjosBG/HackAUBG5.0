@@ -110,6 +110,15 @@ a {
   }
 }
 
+.truncate-text {
+  @apply whitespace-nowrap overflow-hidden  max-w-full ;
+}
+
+.truncate-text:hover {
+  @apply whitespace-normal overflow-visible transition-all  duration-500;
+}
+
+
 @layer components {
   .sidebar-wrapper {
     @apply h-16  align-middle  rounded-md mx-10  my-0  md:m-0  w-4/5  md:w-32 absolute  flex flex-row md:h-screen  md:flex-col  bottom-0  md:top-0 md:sticky  md:items-center  md:justify-center left-0   space-x-6   snap-x

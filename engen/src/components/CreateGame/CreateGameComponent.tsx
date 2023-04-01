@@ -53,7 +53,7 @@ const CreateGameComponent = () => {
   };
 
   return (
-    <main className="fixed w-2/3 left-48 top-48">
+    <main className="fixed top-48 left-48 w-5/6">
       {step == 1 ? (
         <div className="flex flex-wrap justify-center items-center">
           <PlayerCountCard onClick={() => handleClickNum(2)} text="2 Players" />
@@ -151,7 +151,7 @@ const GenreCard = (props: any) => {
   return (
     <div
       onClick={props.onClick}
-      className=" justify-center bg-red-500 hover:bg-red-400 m-3 py-9 rounded-md w-1/5 px-2 flex text-6xl"
+      className=" justify-center bg-red-500 hover:bg-red-400 m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl"
     >
       {props.text}
     </div>
