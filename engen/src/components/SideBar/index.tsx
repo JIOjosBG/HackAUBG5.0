@@ -5,9 +5,19 @@ import { usePathname } from "next/navigation";
 import React, { useMemo } from "react";
 import { logout } from "@/lib/auth";
 import HomeIcon from "@/components/Icons/HomeIcon";
+import ProfileIcon from "@/components/Icons/ProfileIcon";
 import LogoutIcon from "../Icons/LogoutIcon";
 
-const menuItems = [{ id: 1, label: "Home", icon: HomeIcon, link: "/" }];
+const menuItems = [
+  { id: 1, label: "Home", icon: HomeIcon, link: "/" },
+  {
+    id: 2,
+    label: "Profile",
+    icon: ProfileIcon,
+    link: "/profile",
+  },
+];
+
 const SideBar = () => {
   const { data: session } = useSession();
 
