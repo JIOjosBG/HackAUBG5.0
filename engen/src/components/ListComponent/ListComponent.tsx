@@ -31,7 +31,7 @@ const ListComponent = () => {
 const GameCard = (props:any) => {
     return (
     <div className="hover:scale-125 hover:bg-yellow-500 duration-200 m-3 p-3 rounded-md bg-gray-400 w-1/3">
-        <div className="px-1 w-full flex text-4xl">
+        <div className="px-1 w-full  flex text-4xl">
             <div className="w-1/12">
                 -
             </div>
@@ -40,14 +40,15 @@ const GameCard = (props:any) => {
             </div>
         </div>
         <hr/>
-        <div className="px-1 w-full flex text-xl">
+        <div className="  flex text-l truncate-text">
             <div className="w-1/12">
                 -
             </div>
-            <div className="w-9/12">
+            <div className="w-9/12 truncate-text">
                 {props.game.description}
             </div>
         </div>
+        
     </div>
     );
 };
