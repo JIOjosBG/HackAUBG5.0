@@ -8,7 +8,7 @@ const CreateGameComponent = () => {
   const [genre, setGenre] = useState("");
   const [items, setItems] = useState({
     cards: false,
-    volleyballball: false,
+    volleyball: false,
     chess: false,
     sticks: false,
     basketball: false,
@@ -24,8 +24,8 @@ const CreateGameComponent = () => {
   const handleClickItem = (i: string) => {
     let tmpItems = items;
     switch (i) {
-      case "volleyballball":
-        tmpItems.volleyballball = !items.volleyballball;
+      case "volleyball":
+        tmpItems.volleyball = !items.volleyball;
         break;
       case "chess":
         tmpItems.chess = !items.chess;
@@ -42,9 +42,23 @@ const CreateGameComponent = () => {
 
   const sendToAPI = async () => {
     console.log("SENDING TO API");
-    console.log(count);
-    console.log(items);
-    console.log(genre);
+    let listOfItems=[]
+    if(items.cards) listOfItems.push("playing cards")
+    if(items.chess) listOfItems.push("chess board")
+    if(items.volleyball) listOfItems.push("valleyball")
+    if(items.basketball) listOfItems.push("basketball")
+    if(items.badminton) listOfItems.push("badminton")
+    if(items.sticks) listOfItems.push("sticks")
+    let stringForItems=""
+    if(listOfItems.length==0) return
+    if(listOfItems.length==1) stringForItems=listOfItems[0]
+    if(listOfItems.length>1) stringForItems=`${listOfItems[0]} and ${listOfItems[1]}`
+
+    const prompt = `Generate rules for a game with ${count} players with ${stringForItems}`
+    console.log(prompt)
+
+    
+
   };
 
   const handleGenreClick = (g: string) => {
@@ -101,8 +115,8 @@ const CreateGameComponent = () => {
             />
             <ItemCard
               onClick={() => handleClickItem("volleyball")}
-              active={items.volleyballball}
-              text="Volleyballball"
+              active={items.volleyball}
+              text="volleyball"
             />
             <ItemCard
               onClick={() => handleClickItem("basketball")}
@@ -140,7 +154,7 @@ const PlayerCountCard = (props: any) => {
   return (
     <div
       onClick={props.onClick}
-      className="bg-transparent border  border-slate-200 hover:bg-amber-500 hover:te m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl"
+      className="bg-transparent border  border-slate-200 hover:bg-amber-400 hover:te m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl"
     >
       {props.text}
     </div>
@@ -151,7 +165,7 @@ const GenreCard = (props: any) => {
   return (
     <div
       onClick={props.onClick}
-      className=" justify-center bg-red-500 hover:bg-red-400 m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl"
+      className=" justify-center bg-transparent border  border-slate-200 hover:bg-red-500 hover:te m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl"
     >
       {props.text}
     </div>
@@ -174,8 +188,8 @@ const ItemCard = (props: any) => {
   return (
     <div
       onClick={handleClick}
-      className={` justify-center m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl ${
-        isActive ? "bg-green-400" : "bg-green-800"
+      className={` border justify-center m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl ${
+        isActive ? "bg-green-800" : "bg-transparent" 
       }`}
     >
       {props.text}

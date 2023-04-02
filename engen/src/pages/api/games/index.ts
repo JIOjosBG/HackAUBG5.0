@@ -42,7 +42,7 @@ async function createGame(
         },
       },
     });
-
+    console.log(game)
     res.status(201).json(game);
   } catch (error) {
     console.error(error);
