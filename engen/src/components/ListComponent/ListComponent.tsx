@@ -17,7 +17,7 @@ const ListComponent = () => {
     ]
     return (
     <main className="fixed top-48 left-48 w-5/6">
-        
+
     {/* <main className="w-screen  max-h-full h-screen flex flex-col justify-center items-center "> */}
         {games.map((game, index) => (
             <GameCard key={index} game={game} />
