@@ -7,6 +7,7 @@ import { logout } from "@/lib/auth";
 import HomeIcon from "@/components/Icons/HomeIcon";
 import ProfileIcon from "@/components/Icons/ProfileIcon";
 import LogoutIcon from "../Icons/LogoutIcon";
+import CreateIcon from "../Icons/CreateIcon";
 
 const menuItems = [
   { id: 1, label: "Home", icon: HomeIcon, link: "/list" },
@@ -16,6 +17,7 @@ const menuItems = [
     icon: ProfileIcon,
     link: "/",
   },
+  { id: 3, label: "Create", icon: CreateIcon, link: "/create" },
 ];
 
 const SideBar = () => {
