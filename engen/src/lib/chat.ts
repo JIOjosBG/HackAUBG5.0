@@ -21,7 +21,7 @@ async function runCompletion(prompt: string) {
   let title = lines[0];
   let description = lines.slice(1).join("\n");
   title = title.trim();
-  return { title, description };
+  res.json({ title, description} )
 }
 
 export default runCompletion;
