@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { setTokenSourceMapRange } from "typescript";
 
-const CreateGameComponent = () => {
+const CreateGameComponent = (props:any) => {
   const [step, setStep] = useState(1);
   const [genre, setGenre] = useState("");
   const [items, setItems] = useState({
@@ -56,10 +56,22 @@ const CreateGameComponent = () => {
 
     const prompt = `Generate rules for a game with ${count} players with ${stringForItems}`
     console.log(prompt)
+    const userId="";
 
-    
-
-  };
+    //TODO
+    fetch(`${process.env.NEXT_URL}` + "api/games", {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ 
+        "prompt": prompt,
+       "userId":userId})
+    })
+    .then(response => response.json())
+    .then(response => console.log(JSON.stringify(response)))
+    };
 
   const handleGenreClick = (g: string) => {
     setGenre(g);
