@@ -1,10 +1,5 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import { useSession } from "next-auth/react";
-import { getUser } from "@/lib/db";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
-const ProfileCard = async (props: any) => {
+"use client";
+const ProfileCard = (props: any) => {
   const user = props.user;
   const gamesCount = props.gamesCount;
 

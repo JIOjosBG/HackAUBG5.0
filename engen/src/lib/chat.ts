@@ -6,11 +6,10 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 async function runCompletion(prompt: string) {
-  console.log(prompt);
   const gptAnswer = await openai.createCompletion({
     model: "text-davinci-003",
     max_tokens: 2048,
-    prompt: prompt,
+    prompt: (prompt += "Let the first words be the title of the game."),
     temperature: 0.5,
     n: 1,
   });
@@ -24,7 +23,7 @@ async function runCompletion(prompt: string) {
   let title = lines[0].replace(/\\?["\\:]/g, "");
   let description = lines.slice(1).join("\n").replaceAll("\n", "");
   title = title.trim();
-  res.json({ title, description} )
+  return { title, description };
 }
 
 export default runCompletion;

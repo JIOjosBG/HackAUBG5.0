@@ -9,9 +9,7 @@ export default async function Profile() {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email as string;
 
-  console.log(email);
   const userId = await getUserId(email);
-  console.log(userId);
   if (!userId) return null;
   const gamesCount = await gamesCountByUser(userId?.id);
 

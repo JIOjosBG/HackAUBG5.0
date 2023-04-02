@@ -1,12 +1,22 @@
 import prisma from "./prisma";
 export const getGamesByUserId = async (userId: string) =>
-  await prisma.game.findMany({
+  prisma.game.findMany({
     where: {
       users: {
         some: {
           id: {
             equals: userId,
           },
+        },
+      },
+    },
+  });
+export const getAllGames = async () =>
+  prisma.game.findMany({
+    include: {
+      users: {
+        select: {
+          name: true,
         },
       },
     },
