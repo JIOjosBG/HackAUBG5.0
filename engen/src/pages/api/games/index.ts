@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient, Game } from "@prisma/client";
 import runCompletion from "@/lib/chat";
+import { getGamesByUserId } from "@/lib/db";
 
 const prisma = new PrismaClient();
 type Error = { error: string };
@@ -13,7 +14,7 @@ export default async function handler(
       return createGame(req, res);
     case "GET":
       if (req.query.userId) {
-        return getGamesByUserId(req, res);
+        return getUserGames(req, res);
       } else {
         return getGames(req, res);
       }
@@ -54,7 +55,15 @@ async function getGames(
   res: NextApiResponse<Game[] | Error>
 ) {
   try {
-    const games = await prisma.game.findMany();
+    const games = await prisma.game.findMany({
+      include: {
+        users: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
 
     res.status(200).json(games);
   } catch (error) {
@@ -63,24 +72,14 @@ async function getGames(
   }
 }
 
-async function getGamesByUserId(
+async function getUserGames(
   req: NextApiRequest,
   res: NextApiResponse<Game[] | Error>
 ) {
   const userId = req.query.userId as string;
 
   try {
-    const games = await prisma.game.findMany({
-      where: {
-        users: {
-          some: {
-            id: {
-              equals: userId,
-            },
-          },
-        },
-      },
-    });
+    const games = await getGamesByUserId(userId);
 
     res.status(200).json(games);
   } catch (error) {
