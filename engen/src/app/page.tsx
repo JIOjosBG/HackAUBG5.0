@@ -1,5 +1,6 @@
 import { CreateGameComponent, ListComponent } from "@/components";
 import ProfileCard from "@/components/Profile/ProfileComponent";
+import { logout } from "@/lib/auth";
 import { gamesCountByUser, getGamesByUserId, getUserId } from "@/lib/db";
 import prisma from "@/lib/prisma";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
@@ -7,9 +8,11 @@ import { getServerSession } from "next-auth";
 
 export default async function Profile() {
   const session = await getServerSession(authOptions);
-  const email = session?.user?.email as string;
 
+  const email = session?.user?.email as string;
+  if (!email) logout();
   const userId = await getUserId(email);
+  console.log(userId);
   if (!userId) return null;
   const gamesCount = await gamesCountByUser(userId?.id);
 

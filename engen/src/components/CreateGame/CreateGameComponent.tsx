@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { setTokenSourceMapRange } from "typescript";
 
-const CreateGameComponent = (props:any) => {
+const CreateGameComponent = (props: any) => {
   const [step, setStep] = useState(1);
   const [genre, setGenre] = useState("");
   const [items, setItems] = useState({
@@ -42,36 +42,36 @@ const CreateGameComponent = (props:any) => {
 
   const sendToAPI = async () => {
     console.log("SENDING TO API");
-    let listOfItems=[]
-    if(items.cards) listOfItems.push("playing cards")
-    if(items.chess) listOfItems.push("chess board")
-    if(items.volleyball) listOfItems.push("valleyball")
-    if(items.basketball) listOfItems.push("basketball")
-    if(items.badminton) listOfItems.push("badminton")
-    if(items.sticks) listOfItems.push("sticks")
-    let stringForItems=""
-    if(listOfItems.length==0) return
-    if(listOfItems.length==1) stringForItems=listOfItems[0]
-    if(listOfItems.length>1) stringForItems=`${listOfItems[0]} and ${listOfItems[1]}`
+    let listOfItems = [];
+    if (items.cards) listOfItems.push("playing cards");
+    if (items.chess) listOfItems.push("chess board");
+    if (items.volleyball) listOfItems.push("valleyball");
+    if (items.basketball) listOfItems.push("basketball");
+    if (items.badminton) listOfItems.push("badminton");
+    if (items.sticks) listOfItems.push("sticks");
+    let stringForItems = "";
+    if (listOfItems.length == 0) return;
+    if (listOfItems.length == 1) stringForItems = listOfItems[0];
+    if (listOfItems.length > 1)
+      stringForItems = `${listOfItems[0]} and ${listOfItems[1]}`;
 
-    const prompt = `Generate rules for a game with ${count} players with ${stringForItems}`
-    console.log(prompt)
-    const userId="";
+    const prompt = `Generate rules for a game with ${count} players with ${stringForItems}`;
+    console.log(prompt);
+    const userId = props.userId;
 
     //TODO
-    fetch(`${process.env.NEXT_URL}` + "api/games", {
-      method: 'POST',
+    return fetch(`${process.env.NEXT_URL}` + "api/games", {
+      method: "POST",
       headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
-        "prompt": prompt,
-       "userId":userId})
-    })
-    .then(response => response.json())
-    .then(response => console.log(JSON.stringify(response)))
-    };
+      body: JSON.stringify({
+        prompt: prompt,
+        userId: userId,
+      }),
+    });
+  };
 
   const handleGenreClick = (g: string) => {
     setGenre(g);
@@ -201,7 +201,7 @@ const ItemCard = (props: any) => {
     <div
       onClick={handleClick}
       className={` border justify-center m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl ${
-        isActive ? "bg-green-800" : "bg-transparent" 
+        isActive ? "bg-green-800" : "bg-transparent"
       }`}
     >
       {props.text}
