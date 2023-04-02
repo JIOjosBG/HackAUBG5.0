@@ -6,6 +6,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 async function runCompletion(prompt: string) {
+  console.log(prompt);
   const gptAnswer = await openai.createCompletion({
     model: "text-davinci-003",
     max_tokens: 2048,
@@ -13,13 +14,15 @@ async function runCompletion(prompt: string) {
     temperature: 0.5,
     n: 1,
   });
+  console.log(gptAnswer.data);
+
   let response = gptAnswer.data.choices[0].text;
   response = response?.trim();
   response = response?.split("\n\n").join("\n");
   let lines = response?.split("\n");
   if (lines === undefined) return;
-  let title = lines[0];
-  let description = lines.slice(1).join("\n");
+  let title = lines[0].replace(/\\?["\\:]/g, "");
+  let description = lines.slice(1).join("\n").replaceAll("\n", "");
   title = title.trim();
   res.json({ title, description} )
 }

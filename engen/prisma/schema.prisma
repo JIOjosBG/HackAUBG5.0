@@ -53,6 +53,7 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String?
+    points        Int       @default(0)
 
     games Game[] @relation("UserGame")
 
@@ -67,7 +68,7 @@ model Game {
     image       String?
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
-    description String
+    description String   @db.Text
     users       User[]   @relation("UserGame")
 
     UserGame UserGame[]

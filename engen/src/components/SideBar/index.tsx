@@ -9,12 +9,12 @@ import ProfileIcon from "@/components/Icons/ProfileIcon";
 import LogoutIcon from "../Icons/LogoutIcon";
 
 const menuItems = [
-  { id: 1, label: "Home", icon: HomeIcon, link: "/" },
+  { id: 1, label: "Home", icon: HomeIcon, link: "/list" },
   {
     id: 2,
     label: "Profile",
     icon: ProfileIcon,
-    link: "/profile",
+    link: "/",
   },
 ];
 
