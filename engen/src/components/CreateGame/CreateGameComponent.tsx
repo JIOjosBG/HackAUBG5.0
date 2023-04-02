@@ -154,7 +154,7 @@ const PlayerCountCard = (props: any) => {
   return (
     <div
       onClick={props.onClick}
-      className="bg-transparent border  border-slate-200 hover:bg-amber-500 hover:te m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl"
+      className="bg-transparent border  border-slate-200 hover:bg-amber-400 hover:te m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl"
     >
       {props.text}
     </div>
@@ -165,7 +165,7 @@ const GenreCard = (props: any) => {
   return (
     <div
       onClick={props.onClick}
-      className=" justify-center bg-red-500 hover:bg-red-400 m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl"
+      className=" justify-center bg-transparent border  border-slate-200 hover:bg-red-500 hover:te m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl"
     >
       {props.text}
     </div>
@@ -188,8 +188,8 @@ const ItemCard = (props: any) => {
   return (
     <div
       onClick={handleClick}
-      className={` justify-center m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl ${
-        isActive ? "bg-green-400" : "bg-green-800"
+      className={` border justify-center m-3 py-9 rounded-md w-1/5 px-2 flex text-4xl ${
+        isActive ? "bg-green-800" : "bg-transparent" 
       }`}
     >
       {props.text}
