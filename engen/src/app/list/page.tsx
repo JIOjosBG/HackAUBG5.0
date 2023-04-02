@@ -1,9 +1,24 @@
 import { ListComponent } from "@/components";
-import {  PrismaClient } from "@prisma/client";
+import {
+  getUserId,
+  gamesCountByUser,
+  getGamesByUserId,
+  getAllGames,
+} from "@/lib/db";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-export default async function Login() {
+// The return value is *not* serialized
+// You can return Date, Map, Set, etc.
 
-  return <ListComponent />;
+export default async function List() {
+  const games = await getAllGames();
+
+  return (
+    <>
+      <ListComponent games={games} />;
+    </>
+  );
 }
