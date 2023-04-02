@@ -10,4 +10,5 @@ export const login = async (provider: string) => {
 export const logout = async () =>
   signOut({
     callbackUrl: "/login",
+    redirect: true,
   });
